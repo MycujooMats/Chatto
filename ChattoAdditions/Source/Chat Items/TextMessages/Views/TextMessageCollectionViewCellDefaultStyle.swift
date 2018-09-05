@@ -114,7 +114,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         } else {
             let templateKey = ImageKey.template(isIncoming: viewModel.isIncoming, showsTail: viewModel.decorationAttributes.isShowingTail)
             if let image = self.images[templateKey] {
-                let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, customColor: viewModel.customColor, status: viewModel.status, isSelected: isSelected)
+                let image = self.createImage(templateImage: image, isIncoming: viewModel.isIncoming, customBackgroundColor: viewModel.customBackgroundColor, status: viewModel.status, isSelected: isSelected)
                 self.images[key] = image
                 return image
             }
@@ -124,8 +124,8 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
         return UIImage()
     }
 
-    open func createImage(templateImage image: UIImage, isIncoming: Bool, customColor: UIColor?, status: MessageViewModelStatus, isSelected: Bool) -> UIImage {
-        var color = customColor ?? (isIncoming ? self.baseStyle.baseColorIncoming : self.baseStyle.baseColorOutgoing)
+    open func createImage(templateImage image: UIImage, isIncoming: Bool, customBackgroundColor: UIColor?, status: MessageViewModelStatus, isSelected: Bool) -> UIImage {
+        var color = customBackgroundColor ?? (isIncoming ? self.baseStyle.baseColorIncoming : self.baseStyle.baseColorOutgoing)
 
         switch status {
         case .success:
