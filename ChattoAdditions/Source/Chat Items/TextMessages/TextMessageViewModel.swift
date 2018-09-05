@@ -28,6 +28,7 @@ public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol 
     var text: String { get }
     var cellAccessibilityIdentifier: String { get }
     var bubbleAccessibilityIdentifier: String { get }
+    var customColor: UIColor? { get }
 }
 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
