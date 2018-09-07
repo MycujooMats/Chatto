@@ -107,7 +107,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
     }
 
     open func bubbleImage(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIImage {
-        let key = ImageKey.normal(isIncoming: viewModel.isIncoming, status: viewModel.status, showsTail: viewModel.decorationAttributes.isShowingTail, isSelected: isSelected)
+        let key = ImageKey.normal(isIncoming: viewModel.isIncoming, customBackgroundColor: viewModel.customBackgroundColor, status: viewModel.status, showsTail: viewModel.decorationAttributes.isShowingTail, isSelected: isSelected)
 
         if let image = self.images[key] {
             return image
@@ -143,14 +143,14 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
 
     private enum ImageKey: Hashable {
         case template(isIncoming: Bool, showsTail: Bool)
-        case normal(isIncoming: Bool, status: MessageViewModelStatus, showsTail: Bool, isSelected: Bool)
+        case normal(isIncoming: Bool, customBackgroundColor: UIColor?, status: MessageViewModelStatus, showsTail: Bool, isSelected: Bool)
 
         var hashValue: Int {
             switch self {
             case let .template(isIncoming: isIncoming, showsTail: showsTail):
                 return Chatto.bma_combine(hashes: [1 /*template*/, isIncoming.hashValue, showsTail.hashValue])
-            case let .normal(isIncoming: isIncoming, status: status, showsTail: showsTail, isSelected: isSelected):
-                return Chatto.bma_combine(hashes: [2 /*normal*/, isIncoming.hashValue, status.hashValue, showsTail.hashValue, isSelected.hashValue])
+            case let .normal(isIncoming: isIncoming, customBackgroundColor: customBackgroundColor, status: status, showsTail: showsTail, isSelected: isSelected):
+                return Chatto.bma_combine(hashes: [2 /*normal*/, isIncoming.hashValue, customBackgroundColor?.hashValue ?? 0, status.hashValue, showsTail.hashValue, isSelected.hashValue])
             }
         }
 
