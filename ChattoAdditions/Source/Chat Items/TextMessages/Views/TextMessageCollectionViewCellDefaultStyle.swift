@@ -95,7 +95,7 @@ open class TextMessageCollectionViewCellDefaultStyle: TextMessageCollectionViewC
     }
 
     open func textColor(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIColor {
-        return viewModel.isIncoming ? self.incomingColor : self.outgoingColor
+        return viewModel.customTextColor ?? (viewModel.isIncoming ? self.incomingColor : self.outgoingColor)
     }
 
     open func textInsets(viewModel: TextMessageViewModelProtocol, isSelected: Bool) -> UIEdgeInsets {

@@ -29,6 +29,7 @@ public protocol TextMessageViewModelProtocol: DecoratedMessageViewModelProtocol 
     var cellAccessibilityIdentifier: String { get }
     var bubbleAccessibilityIdentifier: String { get }
     var customBackgroundColor: UIColor? { get }
+    var customTextColor: UIColor? { get }
 }
 
 open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: TextMessageViewModelProtocol {
@@ -40,11 +41,13 @@ open class TextMessageViewModel<TextMessageModelT: TextMessageModelProtocol>: Te
     public let cellAccessibilityIdentifier = "chatto.message.text.cell"
     public let bubbleAccessibilityIdentifier = "chatto.message.text.bubble"
     public let customBackgroundColor: UIColor?
+    public let customTextColor: UIColor?
 
-    public init(textMessage: TextMessageModelT, messageViewModel: MessageViewModelProtocol, customBackgroundColor: UIColor?) {
+    public init(textMessage: TextMessageModelT, messageViewModel: MessageViewModelProtocol, customBackgroundColor: UIColor?, customTextColor: UIColor?) {
         self.textMessage = textMessage
         self.messageViewModel = messageViewModel
         self.customBackgroundColor = customBackgroundColor
+        self.customTextColor = customTextColor
     }
 
     open func willBeShown() {
@@ -63,7 +66,7 @@ open class TextMessageViewModelDefaultBuilder<TextMessageModelT: TextMessageMode
 
     open func createViewModel(_ textMessage: TextMessageModelT) -> TextMessageViewModel<TextMessageModelT> {
         let messageViewModel = self.messageViewModelBuilder.createMessageViewModel(textMessage)
-        let textMessageViewModel = TextMessageViewModel(textMessage: textMessage, messageViewModel: messageViewModel, customBackgroundColor: nil)
+        let textMessageViewModel = TextMessageViewModel(textMessage: textMessage, messageViewModel: messageViewModel, customBackgroundColor: nil, customTextColor: nil)
         return textMessageViewModel
     }
 
