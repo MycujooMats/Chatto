@@ -20,7 +20,7 @@
  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
-*/
+ */
 
 import Foundation
 import Chatto
@@ -31,17 +31,20 @@ public struct BaseMessageDecorationAttributes {
     public let isShowingAvatar: Bool
     public let isShowingSelectionIndicator: Bool
     public let isSelected: Bool
+    public let circularAvatar: Bool // CUSTOM CHANGE
 
     public init(canShowFailedIcon: Bool = true,
                 isShowingTail: Bool = false,
                 isShowingAvatar: Bool = false,
                 isShowingSelectionIndicator: Bool = false,
-                isSelected: Bool = false) {
+                isSelected: Bool = false,
+                circularAvatar: Bool = true) {
         self.canShowFailedIcon = canShowFailedIcon
         self.isShowingTail = isShowingTail
         self.isShowingAvatar = isShowingAvatar
         self.isShowingSelectionIndicator = isShowingSelectionIndicator
         self.isSelected = isSelected
+        self.circularAvatar = circularAvatar
     }
 }
 

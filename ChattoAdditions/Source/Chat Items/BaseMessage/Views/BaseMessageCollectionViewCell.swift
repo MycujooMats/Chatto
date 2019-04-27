@@ -232,9 +232,11 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         let avatarImageSize = style.avatarSize(viewModel: viewModel)
         if avatarImageSize != .zero {
             self.avatarView.image = viewModel.avatarImage.value
-            // INSERTED BY MATS FOR CIRCULAR IMAGES
-            self.avatarView.layer.cornerRadius = avatarImageSize.width / 2
-            self.avatarView.clipsToBounds = true
+            if viewModel.decorationAttributes.circularAvatar {
+                // INSERTED BY MATS FOR CIRCULAR IMAGES
+                self.avatarView.layer.cornerRadius = avatarImageSize.width / 2
+                self.avatarView.clipsToBounds = true
+            }
         }
     }
 
